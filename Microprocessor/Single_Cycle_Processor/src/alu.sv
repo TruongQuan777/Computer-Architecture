@@ -1,4 +1,4 @@
-module alu_extended #(parameter N = 32) (
+module alu #(parameter N = 32) (
     input  logic [N-1:0] A, B,
     input  logic [2:0]   ALUControl,
     output logic [N-1:0] Result,
