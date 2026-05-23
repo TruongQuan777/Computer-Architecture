@@ -19,6 +19,7 @@ module aludec(input  logic       opb5,
                  3'b010:    ALUControl = 3'b101; // slt, slti
                  3'b110:    ALUControl = 3'b011; // or, ori
                  3'b111:    ALUControl = 3'b010; // and, andi
+                 3'b001:    ALUControl = 3'b011; // sll
                  default:   ALUControl = 3'bxxx; // ???
                endcase
     endcase
