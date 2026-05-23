@@ -31,6 +31,7 @@ module alu #(parameter N = 32) (
             3'b010:  Result = A & B;                       // AND
             3'b011:  Result = A | B;                       // OR
             3'b101:  Result = {{N-1{1'b0}}, slt_result};   // SLT (Zero Extended)
+            3'b110:  Result=  {{{N-1{1'b0}}, ~slt_result};
             default: Result = 'x;                          // Undefined
         endcase
     end
