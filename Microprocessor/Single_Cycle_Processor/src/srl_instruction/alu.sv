@@ -1,39 +1,36 @@
-module alu #(parameter N = 32) (
-    input  logic [N-1:0] A, B,
-    input  logic [2:0]   ALUControl,
-    output logic [N-1:0] Result,
-    output logic         Cout,
-    output logic         Overflow
-);
-    logic [N-1:0] Bout;
-    logic [N-1:0] Sum;
-    logic         slt_result;
+module alu(input  logic [31:0] SrcA, SrcB,
+           input  logic [2:0]  ALUControl,
+           output logic [31:0] ALUResult,
+           output logic        Zero);
 
-    // 2:1 Mux for B and Inverter
-    assign Bout = ALUControl[0] ? ~B : B;
+  logic [31:0] condinvb;
+  logic [31:0] sum;
+  logic        v; // overflow
 
-    // N-bit Adder
-    assign {Cout, Sum} = A + Bout + ALUControl[0];
+  // 2:1 Mux for B and Inverter
+  assign condinvb = ALUControl[0] ? ~SrcB : SrcB;
 
-    // Overflow detection logic
-    // Occurs if the signs of inputs match each other but differ from the sum
-    // (Only evaluated during Add/Sub, where ALUControl[1] == 0)
-    assign Overflow = ~(A[N-1] ^ Bout[N-1]) & (A[N-1] ^ Sum[N-1]) & ~ALUControl[1];
+  // 32-bit Adder
+  assign sum = SrcA + condinvb + ALUControl[0];
 
-    // Set Less Than logic (Sum sign bit XOR Overflow)
-    assign slt_result = Sum[N-1] ^ Overflow;
+  // Overflow detection logic 
+  // Evaluated during Add/Sub (where ALUControl[1] == 0)
+  assign v = ~(SrcA[31] ^ condinvb[31]) & (SrcA[31] ^ sum[31]) & ~ALUControl[1];
 
-    // Main 5:1 Result Mux
-    always_comb begin
-        case (ALUControl)
-            3'b000, 
-            3'b001:  Result = Sum;                         // Add/Subtract
-            3'b010:  Result = A & B;                       // AND
-            3'b011:  Result = A | B;                       // OR
-            3'b101:  Result = {{N-1{1'b0}}, slt_result};   // SLT (Zero Extended)
-            3'b110:  Result = A << B[4:0];
-            default: Result = 'x;                          // Undefined
-        endcase
-    end
+  // Main Result Mux
+  always_comb begin
+    case (ALUControl)
+      3'b000:  ALUResult = sum;                      // Add
+      3'b001:  ALUResult = sum;                      // Subtract
+      3'b010:  ALUResult = SrcA & SrcB;              // AND
+      3'b011:  ALUResult = SrcA | SrcB;              // OR
+      3'b101:  ALUResult = {31'b0, (sum[31] ^ v)};   // SLT (Zero Extended)
+      3'b110: ALUResult = {SrcA << SrcB[4:0]};
+      default: ALUResult = 32'bx;                    // Undefined
+    endcase
+  end
+
+  // Zero flag
+  assign Zero = (ALUResult == 32'b0);
+
 endmodule
-
