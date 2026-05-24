@@ -25,7 +25,7 @@ module alu(input  logic [31:0] SrcA, SrcB,
       3'b010:  ALUResult = SrcA & SrcB;              // AND
       3'b011:  ALUResult = SrcA | SrcB;              // OR
       3'b101:  ALUResult = {31'b0, (sum[31] ^ v)};   // SLT (Zero Extended)
-      3'b110: ALUResult = {SrcA << SrcB[4:0]};
+      3'b110: ALUResult = SrcA << SrcB[4:0];
       default: ALUResult = 32'bx;                    // Undefined
     endcase
   end
