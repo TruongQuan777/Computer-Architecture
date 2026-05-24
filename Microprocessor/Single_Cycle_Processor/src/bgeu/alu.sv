@@ -2,7 +2,7 @@ module alu(input  logic [31:0] SrcA, SrcB,
            input  logic [2:0]  ALUControl,
            output logic [31:0] ALUResult,
            output logic        Zero,
-           output logic        Negative);
+           output logic        CarryOut);
 
   logic [31:0] condinvb;
   logic [31:0] sum;
@@ -11,8 +11,8 @@ module alu(input  logic [31:0] SrcA, SrcB,
   // 2:1 Mux for B and Inverter
   assign condinvb = ALUControl[0] ? ~SrcB : SrcB;
 
-  // 32-bit Adder
-  assign sum = SrcA + condinvb + ALUControl[0];
+  // 32-bit Adder with CarryOut extraction
+  assign {CarryOut, sum} = SrcA + condinvb + ALUControl[0];
 
   // Overflow detection logic 
   // Evaluated during Add/Sub (where ALUControl[1] == 0)
@@ -32,8 +32,5 @@ module alu(input  logic [31:0] SrcA, SrcB,
 
   // Zero flag
   assign Zero = (ALUResult == 32'b0);
-
-  // Negative flag (MSB of the result)
-  assign Negative = ALUResult[31];
 
 endmodule
