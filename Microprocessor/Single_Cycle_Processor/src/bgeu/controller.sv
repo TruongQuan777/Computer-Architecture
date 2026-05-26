@@ -23,8 +23,9 @@ module controller(input  logic [6:0] op,
         begin
           case (funct3)
             3'b000: PCSrc=Zero;
-            3'b111: PCSrc=Carryout;
+            3'b111: PCSrc=CarryOut;
             default: PCSrc=0;
+          endcase
         end
       else PCSrc=0;
     end
