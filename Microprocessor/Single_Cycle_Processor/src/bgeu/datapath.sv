@@ -4,7 +4,7 @@ module datapath(input  logic        clk, reset,
                 input  logic        RegWrite,
                 input  logic [1:0]  ImmSrc,
                 input  logic [2:0]  ALUControl,
-                output logic        Zero,CarryOut
+                output logic        Zero,CarryOut,
                 output logic [31:0] PC,
                 input  logic [31:0] Instr,
                 output logic [31:0] ALUResult, WriteData,
