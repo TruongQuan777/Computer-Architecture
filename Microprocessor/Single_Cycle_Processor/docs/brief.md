@@ -45,4 +45,9 @@ Customized files are organized under directories of the form /<additional_instru
 #### ALU
 - Input: SrcA, SrcB, ALU_control
 - Output: ALU_Result, Flags (Zero, CarryOut...). In RISC-V, the Flags are updating automatically everytime we calculate ALU_result.
+### Testbench & Memory file
+#### Testbench
+#### Memory file
+
+<img width="632" height="881" alt="image" src="https://github.com/user-attachments/assets/5983806a-a3a2-41d6-91ff-49c79ae81e59" />
 
