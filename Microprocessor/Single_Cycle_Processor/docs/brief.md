@@ -24,8 +24,22 @@ Customized files are organized under directories of the form /<additional_instru
 
 ## Single cycle processor for instructions set: lw,sw, R-type (add, or, and, slt), beq, addi, jal
 ### Controller
-Normally, PCSr will be 0 ==> PC_next=PC+4. When Jump or Branch condition is met, PCSrc is set to 0 ==> PC_next=PC+offset.
+- Normally, PCSr will be 0 ==> PC_next=PC+4. When Jump or Branch condition is met, PCSrc is set to 0 ==> PC_next=PC+offset.
+#### main_dec:
+- Input: op[6:0]
+- Output:
++ ResultSrc: 1 when the result are taken from the memory data. 0 when the result is taken from the ALU. 
++ MemWrite: 1 when we need to write to the memory.
++ ALUSrc: 1 when one of the operand is an immediate. 0 when the operands are from registers.
++ ImmSrc: Below is the picture on different ways to generate the final 32-bit immediate from the users code.
 
+<img width="1239" height="190" alt="image" src="https://github.com/user-attachments/assets/d1a42eef-4164-4f40-93b8-492ba147feb8" />
+
+
++ RegWrite: 1 when we need to write information ont the register file.
+#### alu_dec:
+- Input: op[6:0], funct3[2:0], funct7[5]
+- Output: ALU_control. 
 
 ### Datapath
 
