@@ -21,8 +21,8 @@ Customized files are organized under directories of the form /<additional_instru
 ### Main decoder truth table:
 
 <img width="1236" height="411" alt="image" src="https://github.com/user-attachments/assets/2da25d05-09f4-46c2-8b82-2ec483550dce" />
-## Single cycle processor for instructions set: lw,sw, R-type (add, or, and, slt), beq, addi, jal
 
+## Single cycle processor for instructions set: lw,sw, R-type (add, or, and, slt), beq, addi, jal
 ### Controller
 Normally, PCSr will be 0 ==> PC_next=PC+4. When Jump or Branch condition is met, PCSrc is set to 0 ==> PC_next=PC+offset.
 
