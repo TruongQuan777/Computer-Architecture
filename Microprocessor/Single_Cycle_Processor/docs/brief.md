@@ -42,4 +42,7 @@ Customized files are organized under directories of the form /<additional_instru
 - Output: ALU_control. 
 
 ### Datapath
+#### ALU
+- Input: SrcA, SrcB, ALU_control
+- Output: ALU_Result, Flags (Zero, CarryOut...). In RISC-V, the Flags are updating automatically everytime we calculate ALU_result.
 
