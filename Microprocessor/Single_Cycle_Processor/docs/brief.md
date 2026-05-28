@@ -114,7 +114,7 @@ always_comb
         end
       else MemSel=2'b10;
     end
-```systemverilog
+```
 - Thirdly, we double check:
 + The **dapath** would require a change because we create a new slice module inside it:
 
