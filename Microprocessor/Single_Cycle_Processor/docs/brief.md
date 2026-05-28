@@ -66,7 +66,7 @@ Customized files are organized under directories of the form /<additional_instru
 ### src
 - Firstly, we choose a similiar instruction that is BEQ. For this case, the flow is...
 - Secondly, the fow of BGEU would be the same as BEQ, however, it would require a way to check for the GE condition. This introduce another flag from the ALU which is OverFlow. This flag is fedback to the control unit and we will use this flag in a new logic assignment for the PCSrc:
-```verilog
+```systemverilog
 always_comb
     begin
       if (Jump) PCSrc=1;
