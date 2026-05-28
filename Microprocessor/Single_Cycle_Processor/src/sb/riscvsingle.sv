@@ -8,14 +8,15 @@ module riscvsingle(input  logic        clk, reset,
   logic        ALUSrc, RegWrite, Jump, Zero;
   logic [1:0] ResultSrc, ImmSrc;
   logic [2:0] ALUControl;
+  logic [1:0] MemSel; //Q
 
   controller c(Instr[6:0], Instr[14:12], Instr[30], Zero,
                ResultSrc, MemWrite, PCSrc,
                ALUSrc, RegWrite, Jump,
-               ImmSrc, ALUControl);
+               ImmSrc,MemSel, ALUControl);
   datapath dp(clk, reset, ResultSrc, PCSrc,
               ALUSrc, RegWrite,
-              ImmSrc, ALUControl,
+              ImmSrc, MemSel, ALUControl,
               Zero, PC, Instr,
               ALUResult, WriteData, ReadData);
 endmodule
