@@ -62,3 +62,25 @@ Customized files are organized under directories of the form /<additional_instru
 + Have to ensure the proogram run fine up until the SLL instructions.
 
 - Testbench: Use ChatGPT lol.
+## Single cycle processor for additional instruction: BGEU
+### src
+- Firstly, we choose a similiar instruction that is BEQ. For this case, the flow is...
+- Secondly, the fow of BGEU would be the same as BEQ, however, it would require a way to check for the GE condition. This introduce another flag from the ALU which is OverFlow. This flag is fedback to the control unit and we will use this flag in a new logic assignment for the PCSrc:
+```verilog
+always_comb
+    begin
+      if (Jump) PCSrc=1;
+      else if (Branch)
+        begin
+          case (funct3)
+            3'b000: PCSrc=Zero;
+            3'b111: PCSrc=CarryOut;
+            default: PCSrc=0;
+          endcase
+        end
+      else PCSrc=0;
+    end
+```
+- Thirdly, we double check: Datapath see that alu have change of port ==> **Datapath** change. Riscvsingle see that controller have change of port while datapath remain the same ==> **riscvsingle** still change 
+### tb
+Same as above
