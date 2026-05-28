@@ -16,6 +16,18 @@ module controller(input  logic [6:0] op,
              ALUSrc, RegWrite, Jump, ImmSrc, ALUOp);
   aludec  ad(op[5], funct3, funct7b5, ALUOp, ALUControl);
 
+  always_comb()
+    begin
+      if(op==7'b0100011)
+        begin
+          case(funct3)
+            3'b000: MemSel=2'b00;
+            3'b001: MemSel=2'b01;
+            3'b010: MemSel=2'b10;
+            default: MemSel=2'b10;
+        end
+      else MemSel=2'b10;
+    end
   assign PCSrc = Branch & Zero | Jump;
 
   
