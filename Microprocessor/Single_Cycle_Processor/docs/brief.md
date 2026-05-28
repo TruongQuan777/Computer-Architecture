@@ -129,6 +129,6 @@ Same
 ## Summary of technique
 1/ Find which **instruction is the most similiar**: same op-code... And check the data flow when program try to resolve that instruction
 
-2/ Imagine what would be the flow of the additional instruction. Does it** require another operation on the alu (SLL)** or **another flag from the alu (BGEU)** or since the memory cannot perform Byte data writing, we have to** create a slice module to handle this (SB)**
+2/ Imagine what would be the flow of the additional instruction. Does it** require another operation on the alu (SLL)** or **another flag from the alu (BGEU)** or since the memory cannot perform Byte data writing, we have to **create a slice module to handle this (SB)**
 
 3/ Double check: For all the changes in 2/, **check which module can observe this change (change of ports mostly)**. Those modules also need to change. We keep doing so until no module need to change.
