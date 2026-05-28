@@ -118,6 +118,7 @@ always_comb
 - Thirdly, we double check:
 + The **dapath** would require a change because we create a new slice module inside it:
 
+<img width="1437" height="798" alt="image" src="https://github.com/user-attachments/assets/5a458f74-31d2-401e-95ff-ab01898721e8" />
 
 
 + Since both the datapath and controller have a new ports (controller), we need to change **riscvsingle**.
@@ -127,5 +128,7 @@ always_comb
 Same
 ## Summary of technique
 1/ Find which **instruction is the most similiar**: same op-code... And check the data flow when program try to resolve that instruction
+
 2/ Imagine what would be the flow of the additional instruction. Does it** require another operation on the alu (SLL)** or **another flag from the alu (BGEU)** or since the memory cannot perform Byte data writing, we have to** create a slice module to handle this (SB)**
+
 3/ Double check: For all the changes in 2/, **check which module can observe this change (change of ports mostly)**. Those modules also need to change. We keep doing so until no module need to change.
