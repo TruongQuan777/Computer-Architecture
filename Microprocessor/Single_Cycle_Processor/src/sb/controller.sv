@@ -6,15 +6,17 @@ module controller(input  logic [6:0] op,
                   output logic       MemWrite,
                   output logic       PCSrc, ALUSrc,
                   output logic       RegWrite, Jump,
-                  output logic [1:0] ImmSrc,
+                  output logic [1:0] ImmSrc, MemSel,
                   output logic [2:0] ALUControl);
 
   logic [1:0] ALUOp;
   logic       Branch;
-
+  
   maindec md(op, ResultSrc, MemWrite, Branch,
              ALUSrc, RegWrite, Jump, ImmSrc, ALUOp);
   aludec  ad(op[5], funct3, funct7b5, ALUOp, ALUControl);
 
   assign PCSrc = Branch & Zero | Jump;
+
+  
 endmodule
