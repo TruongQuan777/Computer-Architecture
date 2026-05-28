@@ -52,3 +52,10 @@ Customized files are organized under directories of the form /<additional_instru
 <img width="632" height="881" alt="image" src="https://github.com/user-attachments/assets/5983806a-a3a2-41d6-91ff-49c79ae81e59" />
 
 ## Single cycle processor for additional instruction: SLL
+### src
+### tb
+- Memory file:
++ Append the SLL instruction to the end of the original riscvtest.txt and see if the latest instruction is ran through.
++ Have to ensure the proogram run fine up until the SLL instructions.
+
+- Testbench: Use ChatGPT lol.
