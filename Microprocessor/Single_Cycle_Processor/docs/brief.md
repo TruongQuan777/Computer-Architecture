@@ -51,3 +51,4 @@ Customized files are organized under directories of the form /<additional_instru
 
 <img width="632" height="881" alt="image" src="https://github.com/user-attachments/assets/5983806a-a3a2-41d6-91ff-49c79ae81e59" />
 
+## Single cycle processor for additional instruction: SLL
