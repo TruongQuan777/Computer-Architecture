@@ -13,10 +13,10 @@ module riscvsingle(input  logic        clk, reset,
   controller c(Instr[6:0], Instr[14:12], Instr[30], Zero,
                ResultSrc, MemWrite, PCSrc,
                ALUSrc, RegWrite, Jump,
-               ImmSrc,MemSel, ALUControl);
+               ImmSrc,MemSel, ALUControl); //Q
   datapath dp(clk, reset, ResultSrc, PCSrc,
               ALUSrc, RegWrite,
               ImmSrc, MemSel, ALUControl,
               Zero, PC, Instr,
-              ALUResult, WriteData, ReadData);
+              ALUResult, WriteData, ReadData); //Q
 endmodule
