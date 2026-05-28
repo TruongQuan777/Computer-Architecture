@@ -53,6 +53,9 @@ Customized files are organized under directories of the form /<additional_instru
 
 ## Single cycle processor for additional instruction: SLL
 ### src
+- Firstly, we choose a similiar instruction to SLL. The closest instruction is another R-type instruction, in this case ADD. For this case, the flow of the data is ... (view in book).
+- Secondly, we imagine how the flow of SLL would be. It would be the same as ADD, but the alu will perform SLL instead of ADD. Since the ALUControl comes from the aludec, the aludec need to change.
+- Thirdly, we double check: The direct modules that will see this change of **aludec** are maindec and the direct modules that see the change of **alu** is datapath. However, since the ports of the alu and aludec doesnt change, we dont need to change maindec and datapath. 
 ### tb
 - Memory file:
 + Append the SLL instruction to the end of the original riscvtest.txt and see if the latest instruction is ran through.
