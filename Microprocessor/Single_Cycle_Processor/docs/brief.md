@@ -84,3 +84,6 @@ always_comb
 - Thirdly, we double check: Datapath see that alu have change of port ==> **Datapath** change. Riscvsingle see that controller have change of port while datapath remain the same ==> **riscvsingle** still change 
 ### tb
 Same as above
+## Single cycle processor for additional instruction: SB
+### src
+### tb
