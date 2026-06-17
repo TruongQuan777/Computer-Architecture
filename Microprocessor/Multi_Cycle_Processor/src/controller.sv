@@ -3,8 +3,8 @@ module controller (input logic clk, output logic PCwrite, output logic AdrSrc, o
 
   logic [1:0] ALUOp;
   logic       Branch,PCUpdate;
-  main_decoder md (op, ALUop, Branch, PCUpdate, RegWrite, MemWrite, IRWrite, ResultSrc, ALUSrcB, ALUSrcA, AdrSrc);
-  alu_decider ad (ALUOp, op, funct3, funct7b5, ALUControl);
-  inst_decoder id (op,ImmSrc);
+  maindec md (op, ALUop, Branch, PCUpdate, RegWrite, MemWrite, IRWrite, ResultSrc, ALUSrcB, ALUSrcA, AdrSrc);
+  aludec ad (ALUOp, op, funct3, funct7b5, ALUControl);
+  instrdec id (op,ImmSrc);
   assign PCWrite = Branch & Zero | PCUpdate;
 endmodule
