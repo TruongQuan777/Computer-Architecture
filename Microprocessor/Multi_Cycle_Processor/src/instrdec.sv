@@ -1,6 +1,6 @@
 module instrdec(
     input  logic [6:0] op,
-    output logic [1:0] immsrc
+    output logic [1:0] ImmSrc
 );
 
     always_comb begin
