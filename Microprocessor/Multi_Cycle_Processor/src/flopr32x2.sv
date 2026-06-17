@@ -1,6 +1,8 @@
-module flopr32(input  logic   clk, en, 
-                 input  logic [31:0] d1,d2
-                 output logic [31:0] q1,q2);
+module flopr32x2(
+    input  logic        clk, en, 
+    input  logic [31:0] d1, d2,   
+    output logic [31:0] q1, q2
+);
 
   always_ff @(posedge clk)
     if (en)   
