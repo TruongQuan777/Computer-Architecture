@@ -24,6 +24,8 @@ module maindec (
         S5_MEMWRITE = 4'd5,
         S6_EXECUTER = 4'd6,
         S7_ALUWB    = 4'd7,
+        S8_EXECUTEI = 4'd8,
+        S9_JAL      = 4'd9,
         S10_BEQ     = 4'd10;
 
     // State registers
@@ -31,10 +33,12 @@ module maindec (
 
     // Opcode Definitions
     localparam logic [6:0] 
-        OP_LW    = 7'b0000011,
-        OP_SW    = 7'b0100011,
-        OP_RTYPE = 7'b0110011,
-        OP_BEQ   = 7'b1100011;
+        OP_LW      = 7'b0000011,
+        OP_SW      = 7'b0100011,
+        OP_RTYPE   = 7'b0110011,
+        OP_ITYPE   = 7'b0010011,
+        OP_JAL     = 7'b1101111,
+        OP_BEQ     = 7'b1100011;
 
     // 1. State Register (Sequential)
     always_ff @(posedge clk or posedge reset) begin
@@ -50,6 +54,8 @@ module maindec (
             S1_DECODE: begin
                 if      (op == OP_LW || op == OP_SW) next_state = S2_MEMADR;
                 else if (op == OP_RTYPE)             next_state = S6_EXECUTER;
+                else if (op == OP_ITYPE)             next_state = S8_EXECUTEI;
+                else if (op == OP_JAL)               next_state = S9_JAL;
                 else if (op == OP_BEQ)               next_state = S10_BEQ;
                 else                                 next_state = S0_FETCH; // Default safe state
             end
@@ -63,7 +69,11 @@ module maindec (
             S3_MEMREAD:  next_state = S4_MEMWB;
             S4_MEMWB:    next_state = S0_FETCH;
             S5_MEMWRITE: next_state = S0_FETCH;
+            
             S6_EXECUTER: next_state = S7_ALUWB;
+            S8_EXECUTEI: next_state = S7_ALUWB;
+            S9_JAL:      next_state = S7_ALUWB;
+            
             S7_ALUWB:    next_state = S0_FETCH;
             S10_BEQ:     next_state = S0_FETCH;
             
@@ -130,6 +140,20 @@ module maindec (
                 ALUSrcA   = 2'b10;
                 ALUSrcB   = 2'b00;
                 ALUOp     = 2'b10;
+            end
+            
+            S8_EXECUTEI: begin
+                ALUSrcA   = 2'b10;
+                ALUSrcB   = 2'b01;
+                ALUOp     = 2'b10;
+            end
+            
+            S9_JAL: begin
+                ALUSrcA   = 2'b01;
+                ALUSrcB   = 2'b10;
+                ALUOp     = 2'b00;
+                ResultSrc = 2'b00;
+                PCUpdate  = 1'b1;
             end
             
             S7_ALUWB: begin
