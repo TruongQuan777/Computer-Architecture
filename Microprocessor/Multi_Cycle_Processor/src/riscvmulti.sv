@@ -10,5 +10,5 @@ logic [31:0] Instr;
 logic Zero;
 
 controller c(clk, reset, PCwrite, AdrSrc, MemWrite, IRWrite, ResultSrc, ALUControl, ALUSrcB, ALUSrcA, ImmSrc, RegWrite, Instr[6:0], Instr[14:12], Instr[30], Zero);
-datapath dp(clk, reset, PCwrite, AdrSrc, IRWrite, ResultSrc, ALUControl, ALUSrcB, ALUSrcA, ImmSrc, RegWrite, Instr[6:0], Instr[14:12], Instr[30], Zero);
+datapath dp(clk, reset, PCwrite, AdrSrc, IRWrite, ResultSrc, ALUControl, ALUSrcB, ALUSrcA, ImmSrc, RegWrite, Instr[6:0], Instr[14:12], Instr[30], Zero, ReadData, DataAdr, WriteData);
 endmodule
