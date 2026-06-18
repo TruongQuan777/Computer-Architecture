@@ -1,5 +1,11 @@
- riscvmulti rvmulti(clk, reset, MemWrite, DataAdr, 
-                     WriteData, ReadData);
+module riscvmulti (
+    input  logic        clk,
+    input  logic        reset,
+    output logic        MemWrite,
+    output logic [31:0] DataAdr,
+    output logic [31:0] WriteData,
+    input  logic [31:0] ReadData
+);
 
 logic PCWrite, AdrSrc,IRWrite;
 logic [1:0] ResultSrc;
