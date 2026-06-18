@@ -110,8 +110,8 @@ module datapath (
     // ALU SrcB Mux (00: WriteData, 01: 4, 10: ImmExt)
     mux3 #(32) srcb_mux (
         .d0(WriteData), 
-        .d1(32'd4), 
-        .d2(ImmExt), 
+        .d1(ImmExt), 
+        .d2(32'd4), 
         .s(ALUSrcB), 
         .y(SrcB)
     );
