@@ -1,6 +1,6 @@
 module controller (input logic clk, 
                    input logic reset,
-                   output logic PCwrite, AdrSrc, MemWrite, IRWrite, 
+                   output logic PCWrite, AdrSrc, MemWrite, IRWrite, 
                    output logic [1:0] ResultSrc, 
                    output logic [2:0] ALUControl, 
                    output logic [1:0] ALUSrcB, ALUSrcA, ImmSrc, 
