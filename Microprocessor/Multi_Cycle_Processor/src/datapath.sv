@@ -95,7 +95,7 @@ module datapath (
         .d0(PC), 
         .d1(Result), 
         .s(AdrSrc), 
-        .y(Adr)
+        .y(DataAdr)
     );
 
     // ALU SrcA Mux (00: PC, 01: OldPC, 10: A)
@@ -107,7 +107,7 @@ module datapath (
         .y(SrcA)
     );
 
-    // ALU SrcB Mux (00: WriteData, 01: 4, 10: ImmExt)
+    // ALU SrcB Mux (00: WriteData, 01: ImmExt, 10: 4)
     mux3 #(32) srcb_mux (
         .d0(WriteData), 
         .d1(ImmExt), 
