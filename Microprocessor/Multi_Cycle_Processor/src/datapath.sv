@@ -1,7 +1,7 @@
 module datapath (
     input  logic        clk,
     input  logic        reset,
-    input  logic        PCwrite,
+    input  logic        PCWrite,
     input  logic        AdrSrc,
     input  logic        IRWrite,
     input  logic [1:0]  ResultSrc,
@@ -41,7 +41,7 @@ module datapath (
     flopr32 pcreg (
         .clk(clk), 
         .reset(reset), 
-        .en(PCwrite), 
+        .en(PCWrite), 
         .d(Result), 
         .q(PC)
     );
