@@ -11,7 +11,7 @@ module controller (input logic clk,
 
   logic [1:0] ALUOp;
   logic       Branch,PCUpdate;
-  maindec md (clk, reset, op, ALUop, Branch, PCUpdate, RegWrite, MemWrite, IRWrite, ResultSrc, ALUSrcB, ALUSrcA, AdrSrc);
+  maindec md (clk, reset, op, ALUOp, Branch, PCUpdate, RegWrite, MemWrite, IRWrite, ResultSrc, ALUSrcB, ALUSrcA, AdrSrc);
   aludec  ad(op[5], funct3, funct7b5, ALUOp, ALUControl);
   instrdec id (op,ImmSrc);
   assign PCWrite = Branch & Zero | PCUpdate;
