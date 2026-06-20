@@ -38,9 +38,9 @@ endmodule
 
 <img width="1644" height="1620" alt="image" src="https://github.com/user-attachments/assets/f423945d-9b5a-4755-aec1-48fe91bb5cc8" />
 
-### Main decoder truth table:
+### Main decoder FSM:
 
-<img width="1236" height="411" alt="image" src="https://github.com/user-attachments/assets/2da25d05-09f4-46c2-8b82-2ec483550dce" />
+<img width="714" height="526" alt="image" src="https://github.com/user-attachments/assets/47c27719-33e1-44eb-9f5c-ce06a8d4101d" />
 
 ## Single cycle processor for instructions set: lw,sw, R-type (add, or, and, slt), beq, addi, jal
 ### Controller
