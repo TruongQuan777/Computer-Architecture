@@ -101,6 +101,32 @@ module flopr32x2(
 endmodule
 ```
 flopr32 is a D-flipflop with a single 32-bit input. flopr32x2 is the same module but with two 32-bit inputs. One thing we may notice is that in the datapath diagram, not every flipflop need the reset or en input. If that is the case, we can still use flopr32 and flopr32x2 but we tie  the reset pin to 0 and enable pin to 1.
+
+## Debugging tips using Xilinx Vivado:
+
+### Scope:
+
+<img width="465" height="668" alt="image" src="https://github.com/user-attachments/assets/a2f42d6c-bbd1-4c75-b303-b3959eccf95b" />
+This tell use the whole hierarchy tree of the dut (aka our top module) in the simulation. For each instance appears here, we can see its instance name and its module name (design unit name) which is helpful for debugging.
+
+### Check waveform
+To check the signal of any cells, navigate to its name in the Scope section, then:
+1/ Right click on that instance and choose "Add to Wave window"
+
+<img width="727" height="577" alt="image" src="https://github.com/user-attachments/assets/f9a1be97-2c6e-4388-8dee-9169f839b296" />
+
+2/ Create a new group in Waveform interface
+
+<img width="442" height="917" alt="image" src="https://github.com/user-attachments/assets/f49b5d91-87b7-43d0-a731-6d9b073378af" />
+
+
+3/ Press ctrl and select all the signal of that instance and put to that group
+
+<img width="123" height="168" alt="image" src="https://github.com/user-attachments/assets/6316bf7e-fd9c-4f76-96ed-27a57731ee6c" />
+
+
+4/ Type "restart" in Tcl console. Press f3 to rerun simulation.
+
 ## Single cycle processor for instructions set: lw,sw, R-type (add, or, and, slt), beq, addi, jal
 ### Controller
 - Normally, PCSr will be 0 ==> PC_next=PC+4. When Jump or Branch condition is met, PCSrc is set to 0 ==> PC_next=PC+offset.
