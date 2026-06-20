@@ -100,6 +100,7 @@ module flopr32x2(
       end
 endmodule
 ```
+flopr32 is a D-flipflop with a single 32-bit input. flopr32x2 is the same module but with two 32-bit inputs. One thing we may notice is that in the datapath diagram, not every flipflop need the reset or en input. If that is the case, we can still use flopr32 and flopr32x2 but we tie  the reset pin to 0 and enable pin to 1.
 ## Single cycle processor for instructions set: lw,sw, R-type (add, or, and, slt), beq, addi, jal
 ### Controller
 - Normally, PCSr will be 0 ==> PC_next=PC+4. When Jump or Branch condition is met, PCSrc is set to 0 ==> PC_next=PC+offset.
