@@ -10,6 +10,8 @@ Customized files are organized under directories of the form /<additional_instru
 <img width="409" height="549" alt="image" src="https://github.com/user-attachments/assets/230671a2-3081-4789-900d-25c8f71346ad" />
 
 
+<img width="2048" height="1206" alt="image" src="https://github.com/user-attachments/assets/1f8f5c83-101f-43bb-850b-95e2415f282f" />
+
 ```systemverilog
 module top(input  logic        clk, reset,
            output logic [31:0] WriteData, DataAdr,
@@ -23,6 +25,7 @@ module top(input  logic        clk, reset,
   mem mem(clk, MemWrite, DataAdr, WriteData, ReadData);
 endmodule
 ```
+
 ### Datapath structure:
 
 <img width="1175" height="655" alt="image" src="https://github.com/user-attachments/assets/aa06cede-c0f7-4453-9e9f-62692957aec5" />
