@@ -5,7 +5,7 @@ The original control unit, datapath, and other building blocks are copied from t
 
 Customized files are organized under directories of the form /<additional_instruction> inside both the /src and /tb folders (for example, /src/xor or /tb/xor).
 ## Multi cycle processor structure
-
+Any modules that is mentioned in this section are modules that have some adjustment compared to their version in the single-cycle processor section. For other modules not mentioned, reuse the one in the single-cycle processor section (but need to double check if there is really no need for any change).
 ### Top module structure & hierarchy when view in Vivado Xilinx:
 <img width="409" height="549" alt="image" src="https://github.com/user-attachments/assets/230671a2-3081-4789-900d-25c8f71346ad" />
 
