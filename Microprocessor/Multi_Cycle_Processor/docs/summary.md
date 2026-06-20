@@ -42,6 +42,10 @@ endmodule
 
 <img width="714" height="526" alt="image" src="https://github.com/user-attachments/assets/47c27719-33e1-44eb-9f5c-ce06a8d4101d" />
 
+### Instruction decoder:
+
+A complete new block inside the main decoder. However, its structure remain simple ==> Can check in the repo for its SV code.
+
 ### Generic building blocks
 #### Memory
 We merge both the instruction and data into same memory block:
