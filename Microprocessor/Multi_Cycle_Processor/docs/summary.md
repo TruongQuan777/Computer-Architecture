@@ -5,11 +5,24 @@ The original control unit, datapath, and other building blocks are copied from t
 
 Customized files are organized under directories of the form /<additional_instruction> inside both the /src and /tb folders (for example, /src/xor or /tb/xor).
 ## Single cycle processor structure
+
 ### Top module structure & hierarchy when view in Vivado Xilinx:
+<img width="409" height="549" alt="image" src="https://github.com/user-attachments/assets/230671a2-3081-4789-900d-25c8f71346ad" />
 
-<img width="586" height="455" alt="image" src="https://github.com/user-attachments/assets/c33ba51e-47f3-4178-a313-522f34f26afe" />
-<img width="339" height="478" alt="image" src="https://github.com/user-attachments/assets/b13e2a92-f99a-4aeb-90d3-abc8cde99bb0" />
 
+```systemverilog
+module top(input  logic        clk, reset,
+           output logic [31:0] WriteData, DataAdr,
+           output logic        MemWrite);
+           
+  logic [31:0] ReadData;
+
+  // instantiate processor and memories
+  riscvmulti rvmulti(clk, reset, MemWrite, DataAdr, 
+                     WriteData, ReadData);
+  mem mem(clk, MemWrite, DataAdr, WriteData, ReadData);
+endmodule
+```
 ### Datapath structure:
 
 <img width="1175" height="655" alt="image" src="https://github.com/user-attachments/assets/aa06cede-c0f7-4453-9e9f-62692957aec5" />
