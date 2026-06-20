@@ -107,6 +107,7 @@ flopr32 is a D-flipflop with a single 32-bit input. flopr32x2 is the same module
 ### Scope:
 
 <img width="465" height="668" alt="image" src="https://github.com/user-attachments/assets/a2f42d6c-bbd1-4c75-b303-b3959eccf95b" />
+
 This tell use the whole hierarchy tree of the dut (aka our top module) in the simulation. For each instance appears here, we can see its instance name and its module name (design unit name) which is helpful for debugging.
 
 ### Check waveform
