@@ -42,6 +42,25 @@ endmodule
 
 <img width="714" height="526" alt="image" src="https://github.com/user-attachments/assets/47c27719-33e1-44eb-9f5c-ce06a8d4101d" />
 
+### Generic building blocks
+#### Memory
+We merge both the instruction and data into same memory block:
+
+```systemverilog
+module mem(input  logic        clk, we,
+            input  logic [31:0] a, wd,
+            output logic [31:0] rd);
+
+  logic [31:0] RAM[63:0];
+
+  initial $readmemh("riscvtest.txt",RAM);
+  
+  assign rd = RAM[a[31:2]]; // word aligned
+
+  always_ff @(posedge clk)
+    if (we) RAM[a[31:2]] <= wd;
+endmodule
+```
 ## Single cycle processor for instructions set: lw,sw, R-type (add, or, and, slt), beq, addi, jal
 ### Controller
 - Normally, PCSr will be 0 ==> PC_next=PC+4. When Jump or Branch condition is met, PCSrc is set to 0 ==> PC_next=PC+offset.
