@@ -108,10 +108,11 @@ flopr32 is a D-flipflop with a single 32-bit input. flopr32x2 is the same module
 
 <img width="465" height="668" alt="image" src="https://github.com/user-attachments/assets/a2f42d6c-bbd1-4c75-b303-b3959eccf95b" />
 
-This tell use the whole hierarchy tree of the dut (aka our top module) in the simulation. For each instance appears here, we can see its instance name and its module name (design unit name) which is helpful for debugging.
+This tell us the whole hierarchy tree of the dut (aka our top module) in the simulation. For each instance appears here, we can see its instance name and its module name (design unit name) which is helpful for debugging.
 
 ### Check waveform
 To check the signal of any cells, navigate to its name in the Scope section, then:
+
 1/ Right click on that instance and choose "Add to Wave window"
 
 <img width="727" height="577" alt="image" src="https://github.com/user-attachments/assets/f9a1be97-2c6e-4388-8dee-9169f839b296" />
