@@ -18,9 +18,9 @@ Customized files are organized under directories of the form /<additional_instru
 
 <img width="562" height="536" alt="image" src="https://github.com/user-attachments/assets/2dbc1342-af59-45d2-97f5-6dfad6fdf0a8" />
 
-### Main decoder FSM:
+### Main decoder truth table
 
-<img width="714" height="526" alt="image" src="https://github.com/user-attachments/assets/47c27719-33e1-44eb-9f5c-ce06a8d4101d" />
+<img width="1060" height="212" alt="image" src="https://github.com/user-attachments/assets/fdb38a99-1144-466f-890a-65cc0401d2e4" />
 
 
 ## Single cycle processor for instructions set: lw,sw, R-type (add, or, and, slt), beq, addi, jal
