@@ -36,7 +36,7 @@ endmodule
 
 ### Controller structure:
 
-<img width="562" height="536" alt="image" src="https://github.com/user-attachments/assets/2dbc1342-af59-45d2-97f5-6dfad6fdf0a8" />
+<img width="1644" height="1620" alt="image" src="https://github.com/user-attachments/assets/f423945d-9b5a-4755-aec1-48fe91bb5cc8" />
 
 ### Main decoder truth table:
 
