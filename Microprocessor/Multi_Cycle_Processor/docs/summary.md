@@ -31,7 +31,8 @@ endmodule
 
 ### Datapath structure:
 
-<img width="2048" height="690" alt="image" src="https://github.com/user-attachments/assets/dae3f37d-66bb-4917-bdcd-73b1968fe356" />
+<img width="2048" height="690" alt="image" src="https://github.com/user-attachments/assets/45456b79-7cf7-4d4a-a473-54cf31850f54" />
+
 
 ### Controller structure:
 
