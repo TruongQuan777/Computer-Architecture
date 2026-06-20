@@ -1,10 +1,10 @@
-# Single Cycle Processor
+# Multi Cycle Processor
 This directory contain my work on customizing a Multi-cycle processor. Many of the verilog files here are taken from the book "Digital Design and Computer Architecture, RISC-V Edition" by Sarah Harris. Others are my own design
 ## Folder structure
 The original control unit, datapath, and other building blocks are copied from the book above for convenience and placed directly under the /src directory. The original testbench and memory files from the Sarah Harris book are placed under the /tb directory. 
 
 Customized files are organized under directories of the form /<additional_instruction> inside both the /src and /tb folders (for example, /src/xor or /tb/xor).
-## Single cycle processor structure
+## Multi cycle processor structure
 
 ### Top module structure & hierarchy when view in Vivado Xilinx:
 <img width="409" height="549" alt="image" src="https://github.com/user-attachments/assets/230671a2-3081-4789-900d-25c8f71346ad" />
@@ -61,6 +61,8 @@ module mem(input  logic        clk, we,
     if (we) RAM[a[31:2]] <= wd;
 endmodule
 ```
+
+One thing worth note here is the fact that we assign rd = RAM [a[31:2]], which is equivalent to divide the data address a with 4 first before extracting the value of that address. The  reason we do so is we can only access memory every 4 bytes. Therefore, instead of saying "We access the word at 0, 4, 8... bytes", we divide its value by 4 and now can say "We access the 0th, 1st, 2nd, 3rd words"
 ## Single cycle processor for instructions set: lw,sw, R-type (add, or, and, slt), beq, addi, jal
 ### Controller
 - Normally, PCSr will be 0 ==> PC_next=PC+4. When Jump or Branch condition is met, PCSrc is set to 0 ==> PC_next=PC+offset.
