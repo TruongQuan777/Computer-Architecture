@@ -63,6 +63,43 @@ endmodule
 ```
 
 One thing worth note here is the fact that we assign rd = RAM [a[31:2]], which is equivalent to divide the data address a with 4 first before extracting the value of that address. The  reason we do so is we can only access memory every 4 bytes. Therefore, instead of saying "We access the word at 0, 4, 8... bytes", we divide its value by 4 and now can say "We access the 0th, 1st, 2nd, 3rd words"
+#### Other generic building blocks
+```systemverilog
+module flopr32(input  logic   clk, reset, en, 
+                 input  logic [31:0] d,
+                 output logic [31:0] q);
+
+  always_ff @(posedge clk)
+    begin
+      if(reset) q<=0;
+      else q<=(en)?d:q;
+    end
+
+endmodule
+```
+
+```systemverilog
+module flopr32x2(
+    input  logic        clk, reset, en, 
+    input  logic [31:0] d1, d2,   
+    output logic [31:0] q1, q2
+);
+
+  always_ff @(posedge clk)
+      begin
+           if(reset) 
+               begin
+                   q1<=0;
+                   q2<=0;
+               end
+           else
+               begin
+                   q1<=(en)?d1:q1;
+                   q2<=(en)?d2:q2;
+               end
+      end
+endmodule
+```
 ## Single cycle processor for instructions set: lw,sw, R-type (add, or, and, slt), beq, addi, jal
 ### Controller
 - Normally, PCSr will be 0 ==> PC_next=PC+4. When Jump or Branch condition is met, PCSrc is set to 0 ==> PC_next=PC+offset.
