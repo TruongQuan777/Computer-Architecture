@@ -39,6 +39,7 @@ module maindec (
         OP_ITYPE   = 7'b0010011,
         OP_JAL     = 7'b1101111,
         OP_BEQ     = 7'b1100011;
+        OP_AUIPC   = 7'b0010111;
 
     // 1. State Register (Sequential)
     always_ff @(posedge clk or posedge reset) begin
@@ -57,6 +58,7 @@ module maindec (
                 else if (op == OP_ITYPE)             next_state = S8_EXECUTEI;
                 else if (op == OP_JAL)               next_state = S9_JAL;
                 else if (op == OP_BEQ)               next_state = S10_BEQ;
+                else if (op == OP_AUIPC)             next_state = S7_ALUWB;
                 else                                 next_state = S0_FETCH; // Default safe state
             end
             
