@@ -135,8 +135,10 @@ To check the signal of any cells, navigate to its name in the Scope section, the
 
 ## auipc instruction
 ### Version 1
-We realize that at stage S1: ALUResult = OldPC+ImmExt. Therefore, if we adjust the S1 state such that **if op==auipc, WD3=ALUResult then 1 clockedge after the S1 state**, the value OldPC+ImmExt is stored into rd inside reg file. As a result,the flow for auipc instruction only contains S0 and S1_adjusted.
+We realize that at stage S1: ALUResult = OldPC+ImmExt. Therefore, if we adjust the S1 state such that **if op==auipc, WD3=ALUResult then 1 clockedge after the S1 state**, the value OldPC+ImmExt is stored into rd inside reg file. As a result,the flow for auipc instruction only contains S0 and S1_adjusted.\
+
 Pros: Only require **2 clock cycle**
+
 Cons: Have to modify the S0, S1 of the controller. Even worse, this adjustment will make the controller not Moore type anymore. Before this change, control signal depends only on the state (Moore type). After this change, the control signal will depends on both the state and the op input (**Mealy type**). While this is not a bad thing, it may makes further adjustment in the future complicated. 
 ### Version 2
 <img width="1178" height="1000" alt="image" src="https://github.com/user-attachments/assets/eb956581-2b8d-4f7a-bce5-7f56be6cdad2" />
