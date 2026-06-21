@@ -133,7 +133,18 @@ To check the signal of any cells, navigate to its name in the Scope section, the
 
 4/ Type "restart" in Tcl console. Press f3 to rerun simulation.
 
-## Single cycle processor for instructions set: lw,sw, R-type (add, or, and, slt), beq, addi, jal
+## auipc instruction
+### Version 1
+We realize that at stage S1: ALUResult = OldPC+ImmExt. Therefore, if we adjust the S1 state such that **if op==auipc, WD3=ALUResult then 1 clockedge after the S1 state**, the value OldPC+ImmExt is stored into rd inside reg file. As a result,the flow for auipc instruction only contains S0 and S1_adjusted.
+Pros: Only require **2 clock cycle**
+Cons: Have to modify the S0, S1 of the controller. Even worse, this adjustment will make the controller not Moore type anymore. Before this change, control signal depends only on the state (Moore type). After this change, the control signal will depends on both the state and the op input (**Mealy type**). While this is not a bad thing, it may makes further adjustment in the future complicated. 
+### Version 2
+<img width="1178" height="1000" alt="image" src="https://github.com/user-attachments/assets/eb956581-2b8d-4f7a-bce5-7f56be6cdad2" />
+
+The **maindec** should behave exactly like the FSM above. After S1, it transitions directly to S7, where PC + ImmExt is written to rd. 
+
+However, there is one additional adjustment required. Different instructions require different methods of extending the immediate. In the **instrcdec** module, the immediate extension control signal (ImmSrc) has already been defined for all instruction types except the U-type instruction. Therefore, we need to modify the instrdec so that when op == AUIPC, ImmSrc is set to 3'b100. Then, in the **extend** module, we define ImmSrc = 3'b100 to indicate that the immediate should be extended by appending 12 zeros to its least significant end. We also need to widen the ImmSrc input from 2 bits to 3 bits. As a result, corresponding changes must be made to the **controller, datapath, extend,** and **riscvmulti** modules to accommodate the increased width of the ImmSrc signal.
+
 ### Controller
 - Normally, PCSr will be 0 ==> PC_next=PC+4. When Jump or Branch condition is met, PCSrc is set to 0 ==> PC_next=PC+offset.
 #### main_dec:
