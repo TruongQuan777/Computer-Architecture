@@ -147,6 +147,9 @@ The **maindec** should behave exactly like the FSM above. After S1, it transitio
 
 However, there is one additional adjustment required. Different instructions require different methods of extending the immediate. In the **instrcdec** module, the immediate extension control signal (ImmSrc) has already been defined for all instruction types except the U-type instruction. Therefore, we need to modify the instrdec so that when op == AUIPC, ImmSrc is set to 3'b100. Then, in the **extend** module, we define ImmSrc = 3'b100 to indicate that the immediate should be extended by appending 12 zeros to its least significant end. We also need to widen the ImmSrc input from 2 bits to 3 bits. As a result, corresponding changes must be made to the **controller, datapath, extend,** and **riscvmulti** modules to accommodate the increased width of the ImmSrc signal.
 
+Pros: Don't have to modify S1 state
+
+Cons: The total clock cycles becomes 3 instead of just 2.
 ### Controller
 - Normally, PCSr will be 0 ==> PC_next=PC+4. When Jump or Branch condition is met, PCSrc is set to 0 ==> PC_next=PC+offset.
 #### main_dec:
